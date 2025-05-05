@@ -3,7 +3,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from zipfile import ZipFile
+import zipfile
 from datetime import datetime
 
 def main():
@@ -53,7 +53,7 @@ def main():
 
     # Create ZIP archive
     print(f"Creating ZIP archive: {zip_filename}")
-    with ZipFile(zip_filename, 'w') as zipf:
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file_path in downloaded_files:
             zipf.write(file_path, os.path.basename(file_path))
 
